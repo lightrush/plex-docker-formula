@@ -1,0 +1,19 @@
+{# Import defaults, OS family map and OS map. #}
+{% import_yaml 'plex-docker/defaults.yaml' as defaults %}
+{% import_yaml 'plex-docker/osfamilymap.yaml' as osfamilymap %}
+{% import_yaml 'plex-docker/osmap.yaml' as osmap %}
+
+{# Start with defaults, merge osfamilymap, then merge osmap, then merge pillar #}
+{% set plex = salt['grains.filter_by'](
+  defaults,
+  merge = salt['grains.filter_by'](
+    osfamilymap,
+    grain='os_family',
+    merge = salt['grains.filter_by'](
+      osmap,
+      grain='os',
+      merge = salt['pillar.get']('plex-docker', {}),
+    ),
+  ),
+  base='plex-docker')
+%}

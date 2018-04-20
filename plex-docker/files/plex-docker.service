@@ -1,0 +1,24 @@
+{%- from "plex-docker/map.jinja" import plex with context -%}
+[Unit]
+Description=Official Docker container for Plex Media Server
+After=docker.service {% for dep in plex.systemd_after_deps %}{{ dep }} {% endfor %}
+Requires=docker.service
+
+[Service]
+TimeoutStartSec={{ plex.timeout_start_sec }}
+Restart=always
+RestartSec=10
+ExecStartPre=-{{ plex.docker_executable }} rm -f plex
+ExecStartPre={{ plex.docker_executable }} pull plexinc/pms-docker:latest
+ExecStart={{ plex.docker_executable }} run \
+        --name plex \
+        --net=host \
+        -e TZ="{{ plex.timezone }}" \
+        -v {{ plex.config }}:/config \
+        {% for source, dest in plex.mounts.items() -%}
+        -v "{{ source }}:{{ dest }}" \
+        {% endfor -%}
+        plexinc/pms-docker:latest
+
+[Install]
+WantedBy=multi-user.target

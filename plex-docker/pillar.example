@@ -1,0 +1,14 @@
+plex-docker:
+  mounts:
+    # Where's your media? The mapping is [source: destination] where source
+    # is the location on the host machine and destinationis the location inside
+    # the container.
+    /path/to/media: /mapped/path/to/media/in/container
+    /media/mydisk: /media/mydisk
+    /mnt/networkshare: /media/networkshare
+
+  # What Systemd services should plex-docker start after?
+  systemd_after_deps:
+    - mount-remote-volume.service
+    - mount-some-disk.service
+    - network-internet.service

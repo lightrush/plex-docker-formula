@@ -1,0 +1,20 @@
+plex-docker:
+  # The location of Plex' config. It should contain a directory called "Library"
+  config: /var/lib/plex/config
+
+  # Plex' time zone
+  timezone: US/Eastern
+
+  # Where's docker?
+  docker_executable: /usr/bin/docker
+
+  # How many seconds should Systemd wait for plex-docker to start?
+  # The service does a docker pull every time it starts. This should be long
+  # enough to pull a complete plex-docker image over your internet connection.
+  timeout_start_sec: 180
+
+  # Where's your media? See pillar.example
+  mounts: {}
+
+  # What Systemd services should plex-docker start after? See pillar.example
+  systemd_after_deps: []

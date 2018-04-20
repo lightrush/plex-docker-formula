@@ -1,5 +1,5 @@
 # Put OS defaults overrides here
 # Example:
 DEADBEEF:
-  # Where's docker on DEADDEADz OS?
+  # Where's docker on DEADBEEF OS?
   docker_executable: /deadbeef/bin/docker

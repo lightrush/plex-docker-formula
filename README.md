@@ -16,3 +16,7 @@ as pillar on Salt's command line or put it in defaults.yaml.
 
 ## Dependencies
 Depends on Docker being already installed!
+
+## Official Docker container for Plex Media Server
+The official PMS Docker container documentation can be found here:
+https://hub.docker.com/r/plexinc/pms-docker/

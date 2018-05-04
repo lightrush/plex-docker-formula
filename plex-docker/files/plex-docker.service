@@ -15,6 +15,9 @@ ExecStart={{ plex.docker_executable }} run \
         --net=host \
         -e TZ="{{ plex.timezone }}" \
         -v {{ plex.config }}:/config \
+        {% if plex.transcode -%}
+        -v {{ plex.transcode }}:/transcode \
+        {% endif -%}
         {% for source, dest in plex.mounts.items() -%}
         -v "{{ source }}:{{ dest }}" \
         {% endfor -%}

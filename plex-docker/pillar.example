@@ -12,3 +12,10 @@ plex-docker:
     - mount-remote-volume.service
     - mount-some-disk.service
     - network-internet.service
+
+  # The location of Plex' config. It should contain a directory called "Library"
+  config: /var/lib/plex/config
+
+  # The location where Plex puts its transcode files. If this is empty string,
+  # Plex uses its container volume to store transcode files.
+  transcode: /var/cache/plex/transcode

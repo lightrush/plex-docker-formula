@@ -2,7 +2,7 @@
 [Unit]
 Description=Official Docker container for Plex Media Server
 After=docker.service {% for dep in plex.systemd_after_deps %}{{ dep }} {% endfor %}
-Requires=docker.service
+After=docker.service
 
 [Service]
 TimeoutStartSec={{ plex.timeout_start_sec }}

@@ -19,3 +19,9 @@ plex-docker:
   # The location where Plex puts its transcode files. If this is empty string,
   # Plex uses its container volume to store transcode files.
   transcode: /var/cache/plex/transcode
+
+  # List of devices to expose to the container. Used for hardware acceleration.
+  devices: 
+    - "/dev/dri"
+    - "/dev/nvidia0"
+    ...

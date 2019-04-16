@@ -22,3 +22,7 @@ plex-docker:
 
   # What Systemd services should plex-docker start after? See pillar.example
   systemd_after_deps: []
+
+  # List of devices to expose to the container. Used for hardware acceleration.
+  devices: 
+    - "/dev/dri"

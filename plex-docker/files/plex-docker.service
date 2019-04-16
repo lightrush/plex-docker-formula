@@ -22,6 +22,9 @@ ExecStart={{ plex.docker_executable }} run \
         {% for source, dest in plex.mounts.items() -%}
         -v "{{ source }}:{{ dest }}" \
         {% endfor -%}
+        {% for device in plex.devices -%}
+        --device {{ device }}:{{ device }} \
+        {% endfor -%}
         plexinc/pms-docker:latest
 
 [Install]

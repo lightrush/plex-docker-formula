@@ -26,3 +26,6 @@ plex-docker:
   # List of devices to expose to the container. Used for hardware acceleration.
   devices: 
     - "/dev/dri"
+
+  # Environment variables passed to container as-is
+  environment_variables: {}

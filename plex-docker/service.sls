@@ -5,7 +5,7 @@ plex_docker_service_installed:
     - template: jinja
 
   module.run:
-    - name: service.systemctl_reload
+    - name: systemd_service.systemctl_reload
     - onchanges:
       - file: plex_docker_service_installed
 

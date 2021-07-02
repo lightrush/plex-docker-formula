@@ -14,6 +14,9 @@ ExecStart={{ plex.docker_executable }} run \
         --name plex \
         --net=host \
         -e TZ="{{ plex.timezone }}" \
+        {% for name, value in plex.environment_variables.items() -%}
+        -e "{{ name }}={{ value }}" \
+        {% endfor -%}
         -v /tmp:/tmp \
         -v {{ plex.config }}:/config \
         {% if plex.transcode -%}
